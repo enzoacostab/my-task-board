@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, RefObject, SetStateAction } from "react";
+import { ChangeEvent, Dispatch, FormEvent, RefObject, SetStateAction } from "react";
 import Status from "./Status";
 import Icon from "../Icon";
 import { Task } from "../../../types";
@@ -13,12 +13,22 @@ interface Props {
 }
 
 export default function TaskEdit({ dialogRef, taskToEdit, setStylishLi, setTaskToEdit }: Props) {
-  const handleUpdate = async () => {
-    await editTask(taskToEdit._id, taskToEdit)
+  const handleUpdate = async (e:  FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    try {
+      await editTask(taskToEdit._id, taskToEdit)
+      window.location.assign(window.location.origin);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   const handleDelete = async () => {
-    await deleteTask(taskToEdit._id)
+    try {
+      await deleteTask(taskToEdit._id)
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -65,8 +75,6 @@ export default function TaskEdit({ dialogRef, taskToEdit, setStylishLi, setTaskT
           </div>
         </form>
       </main>
-      
-
     </dialog>
   )
 }

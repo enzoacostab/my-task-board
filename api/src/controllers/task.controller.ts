@@ -69,7 +69,8 @@ export const updateTask = async (req: Request, res: Response) => {
   const { id } = req.params
 
   try {
-    await tasksModel.findByIdAndUpdate(id, body)
+    const task = await tasksModel.findByIdAndUpdate(id, body)
+    return res.json(task)
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message)

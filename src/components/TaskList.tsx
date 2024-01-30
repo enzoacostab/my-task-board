@@ -20,19 +20,25 @@ export default function TaskList({ setTaskToEdit, dialogRef, setStylishLi, styli
     if (board_id) {
       getTasks(board_id)
         .then(res => setTasks(res ?? []))
+        .catch(err => console.error(err))
     } else {
       board_id = uuid()
       localStorage.setItem("board_id", board_id)
       getTasks(board_id)
         .then(res => setTasks(res ?? []))
+        .catch(err => console.error(err))
     }
     setBoardId(board_id)
   }, [])
 
   const handleAddTask = async () => {
-    const newTask = await addTask(boardId)
-    if (newTask) {
-      setTasks(tasks.concat(newTask))
+    try {
+      const newTask = await addTask(boardId)
+      if (newTask) {
+        setTasks(tasks.concat(newTask))
+      }
+    } catch (error) {
+      console.error(error);
     }
   }
 
@@ -43,7 +49,7 @@ export default function TaskList({ setTaskToEdit, dialogRef, setStylishLi, styli
 
   return (
     <ul>
-      <Suspense fallback={new Array(4).fill(0).map(() => <li className="h-20 my-5 rounded-xl bg-gray-200"></li>)}>
+      <Suspense fallback={new Array(4).fill(0).map((_, i) => <li key={i} className="h-20 my-5 rounded-xl bg-gray-200"></li>)}>
         <Tasks tasks={tasks} handleOpenDialog={handleOpenDialog} stylishLi={stylishLi} setStylishLi={setStylishLi}/>
       </Suspense>
       <li onClick={handleAddTask} className="h-20 my-5 cursor-pointer flex items-center justify-between p-4 rounded-2xl bg-[#F5E8D5] active:outline outline-2 outline-[#3662E3] outline-offset-[3px]">
