@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  background-color: #F8FAFC;
+  font-family: "Outfit", sans-serif;
+  padding: 40px;
+}
+
+body {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.Wont-do {
+  background-color: #F7D4D3;
+}
+
+div.Wont-do {
+  background-color: #DD524C;
+}
+
+.In-Progress, .icon-checked {
+  background-color: #F5D565;
+}
+
+div.In-Progress {
+  background-color: #E9A23B;
+}
+
+.Completed {
+  background-color: #A0ECB1;
+}
+
+div.Completed {
+  background-color: #32D657;
+}
+
+.close-button {
+  border: 1px solid #97A3B6;
+  scale: .8;
+}
+
+.icon {
+  background-color: #E3E8EF;
+}
