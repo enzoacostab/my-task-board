@@ -42,7 +42,7 @@ export default function TaskEdit({ dialogRef, taskToEdit, setStylishLi, setTaskT
   }
 
   return (
-    <dialog className="hidden max-w-[600px] bg-[#F8FAFC] mr-5 backdrop:bg-black backdrop:bg-opacity-40 open:flex flex-col justify-start size-full rounded-xl p-5" ref={dialogRef}>
+    <dialog className="hidden w-full max-w-[600px] bg-[#F8FAFC] sm:mr-5 backdrop:bg-black backdrop:bg-opacity-40 open:flex flex-col justify-start size-full rounded-xl px-5 pt-5" ref={dialogRef}>
       <header className="flex justify-between">
         <h3 className="text-xl font-semibold">Task details</h3>
         <button className="size-fit focus-visible:outline-none" onClick={handleCloseDialog}>
@@ -64,11 +64,11 @@ export default function TaskEdit({ dialogRef, taskToEdit, setStylishLi, setTaskT
           <Icons currentIcon={taskToEdit.icon} handleChange={handleChange}/>
           <Status handleChange={handleChange} currentStatus={taskToEdit.status}/>
           <div className="flex gap-3 ml-auto mt-auto">
-            <button onClick={handleDelete} className="w-fit flex px-5 gap-2 py-2 h-fit text-[#F8FAFC] rounded-full bg-[#97A3B6] text-sm font-medium hover:bg-opacity-80">
+            <button onClick={handleDelete} className="w-fit mb-5 flex px-5 gap-2 py-2 h-fit text-[#F8FAFC] rounded-full bg-[#97A3B6] text-sm font-medium hover:bg-opacity-80">
               Delete
               <img src="/assets/Trash.svg" alt="" />
             </button>
-            <button type="submit" className="w-fit flex px-5 gap-2 py-2 h-fit text-[#F8FAFC] rounded-full bg-[#3662E3] text-sm font-medium hover:bg-opacity-80">
+            <button type="submit" className="w-fit mb-5 flex px-5 gap-2 py-2 h-fit text-[#F8FAFC] rounded-full bg-[#3662E3] text-sm font-medium hover:bg-opacity-80">
               Save
               <img src="/assets/Done_round.svg" alt="" />
             </button>

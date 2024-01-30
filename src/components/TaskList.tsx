@@ -54,7 +54,7 @@ export default function TaskList({ setTaskToEdit, dialogRef, setStylishLi, styli
       <Suspense fallback={new Array(4).fill(0).map((_, i) => <li key={i} className="h-20 my-5 rounded-xl bg-gray-200"></li>)}>
         <Tasks tasks={tasks} handleOpenDialog={handleOpenDialog} stylishLi={stylishLi} setStylishLi={setStylishLi}/>
       </Suspense>
-      <li onClick={handleAddTask} className="h-20 my-5 cursor-pointer flex items-center justify-between p-4 rounded-2xl bg-[#F5E8D5] active:outline outline-2 outline-[#3662E3] outline-offset-[3px]">
+      <li onClick={handleAddTask} className="h-20 my-5 cursor-pointer hover:contrast-[.9] transition-all flex items-center justify-between p-4 rounded-2xl bg-[#F5E8D5] active:outline outline-2 outline-[#3662E3] outline-offset-[3px]">
         <div className="flex justify-center items-center gap-5"> 
           <div className="bg-[#E9A23B] p-3 rounded-xl">
             <img className="w-6" src={`/assets/Add_round_duotone.svg`} alt=""/>

@@ -13,9 +13,9 @@ export default function Status({ currentStatus, handleChange }: Props) {
   return (
     <>
       <p className="tracking-wide mt-3 text-xs mb-1 text-[#97A3B6] font-medium">Status</p>
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-4 mb-5">
         {statuses.map(status => 
-        <label key={status} className="flex cursor-pointer items-center transition-colors has-[:checked]:border-[#3662E3] w-[48%] gap-2 border-2 rounded-2xl border-[#E3E8EF] p-[2.5px]">
+        <label key={status} className="flex cursor-pointer items-center transition-colors has-[:checked]:border-[#3662E3] w-full xs:w-[48%] gap-2 border-2 rounded-2xl border-[#E3E8EF] p-[2.5px]">
           <input onChange={handleChange} checked={currentStatus === status} className="absolute appearance-none peer" value={status} type="radio" name="status"/>
           <Icon status={status}/>
           <span className="font-medium">{status}</span>

@@ -20,10 +20,10 @@ export default function Tasks({ tasks, handleOpenDialog, stylishLi, setStylishLi
       {tasks.map((task: Task, i) => {
         const status = task.status?.split('’').join('').split(' ').join('-')
         return (
-          <li onClick={() => handleClick(task, i)} key={task._id} className={`cursor-pointer my-5 flex items-center justify-between box-content p-4 rounded-2xl bg-[#E3E8EF] ${status} ${i === stylishLi ? "outline outline-2 outline-[#3662E3] outline-offset-[3px]" : null}`}>
-            <div className="flex justify-center items-start gap-5"> 
+          <li onClick={() => handleClick(task, i)} key={task._id} className={`cursor-pointer hover:contrast-[.9] transition-all my-5 flex items-center justify-between box-content p-4 rounded-2xl bg-[#E3E8EF] active:outline outline-2 outline-[#3662E3] outline-offset-[3px] ${status} ${i === stylishLi ? "outline" : null}`}>
+            <div className="flex flex-wrap w-full items-start gap-5"> 
               <Icon img={`icon${task.icon}.png`}/>
-              <div className="w-80 self-center">
+              <div className="max-w-80 self-center">
                 <h2 className="text-xl font-semibold">{task.name}</h2>
                 <p >{task.description}</p>
               </div>

@@ -18,7 +18,9 @@ export default function App() {
   return (
     <>
       <header className="flex gap-3">
-        <div><img className="align-top" src="/assets/Logo.svg" alt="" /></div>
+        <div>
+          <img className="align-top" src="/assets/Logo.svg" alt="" />
+        </div>
         <div>
           <div className="flex gap-3">
             <h1 className='text-4xl font-normal'>My Task Board</h1>  

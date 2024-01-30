@@ -12,9 +12,9 @@ export default function Icons({ handleChange, currentIcon }: Props) {
   return (
     <>
       <p className="tracking-wide text-xs mb-1 text-[#97A3B6] font-medium">Icon</p>
-      <div className="flex">
+      <div className="flex gap-3 flex-wrap">
       {icons.map((_, icon) => 
-        <label key={icon} className="inline-block mr-3 cursor-pointer">
+        <label key={icon} className="inline-block cursor-pointer">
           <input onChange={handleChange} className="absolute appearance-none" value={icon} type="radio" name="icon"/>
           <Icon img={`icon${icon}.png`} status={icon == currentIcon ? "icon-checked" : "icon"}/>
         </label>
