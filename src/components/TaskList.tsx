@@ -28,6 +28,8 @@ export default function TaskList({ setTaskToEdit, dialogRef, setStylishLi, styli
         .then(res => setTasks(res ?? []))
         .catch(err => console.error(err))
     }
+    console.log(board_id);
+    
     setBoardId(board_id)
   }, [])
 

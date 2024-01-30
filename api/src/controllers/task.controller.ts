@@ -3,36 +3,35 @@ import tasksModel from '../models/task.model'
 import { Task } from '../../../types'
 
 export const getTaskBoard = async (req: Request, res: Response) => {
-  const { boardId } = req.params
+  const { board_id } = req.params
+  
   try {
-    const board = await tasksModel.find({ 'board-id': boardId })
+    const board = await tasksModel.find({ 'board-id': board_id })
 
     if (board.length === 0) {
-      
       const defaultTaskBoard = [
         {
-          'board-id': boardId,
+          'board-id': board_id,
           'name': 'Task in Progress',
           'icon': 5,
           'status': 'In Progress'
         }, {
-          'board-id': boardId,
+          'board-id': board_id,
           'name': 'Task Completed',
           'icon': 3,
           'status': 'Completed'
         }, {
-          'board-id': boardId,
+          'board-id': board_id,
           'name': 'Task Won’t Do',
           'icon': 2,
           'status': 'Won’t do'
         }, {
-          'board-id': boardId,
+          'board-id': board_id,
           'name': 'Task To Do',
           'description': 'Work on a Challenge on devChallenges.io, learn TypeScript.', 
           'icon': 4
         },
       ]
-      
       const newBoard = await tasksModel.insertMany(defaultTaskBoard)
       return res.json(newBoard)
     }
@@ -46,7 +45,7 @@ export const getTaskBoard = async (req: Request, res: Response) => {
 
 export const addTask = async (req: Request, res: Response) => {
   const boardId: string = req.body['board-id']
-
+  
   try {
     const newTask = await tasksModel.create({
       'board-id': boardId,
@@ -54,7 +53,6 @@ export const addTask = async (req: Request, res: Response) => {
       'description': 'Work on a Challenge on devChallenges.io, learn TypeScript.', 
       'icon': 4
     })
-    
     return res.json(newTask)
   } catch (error) {
     if (error instanceof Error) {
