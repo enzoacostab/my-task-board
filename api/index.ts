@@ -1,7 +1,7 @@
 import express from 'express';
-import router from './routes/task.routes';
+import router from './src/routes/task.routes';
 import mongoose from 'mongoose';
-import config from './config'
+import config from './src/config'
 import cors from 'cors'
 
 const app = express()
@@ -14,7 +14,7 @@ mongoose.connect(config.MONGODB_URI)
 
 app.use('/api/board', router)
 
-app.listen(3000, () => {
-    console.log('http://localhost:3000');
+app.listen(config.PORT, () => {
+    console.log(`http://localhost:${config.PORT}`);
   }
 )

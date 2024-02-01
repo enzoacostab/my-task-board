@@ -4,6 +4,7 @@ import Icon from "../Icon";
 import { Task } from "../../../types";
 import Icons from "./Icons";
 import { editTask, deleteTask } from "../../services/board";
+import { AlertCircle } from "lucide-react";
 
 interface Props {
   dialogRef: RefObject<HTMLDialogElement> 
@@ -53,13 +54,14 @@ export default function TaskEdit({ dialogRef, taskToEdit, setStylishLi, setTaskT
         <form onSubmit={handleUpdate} className="h-full flex flex-col" action="dialog">
           <label className="has-[:focus:invalid]:text-red-400 bg-[#F8FAFC] tracking-wide text-xs text-[#97A3B6] font-medium">
             Task name
-            <input value={taskToEdit.name} onChange={handleChange} autoComplete="off" className="peer py-2 px-4 block text-black font-normal focus-visible:outline-[#3662E3] text-base border-2 rounded-lg border-[#E3E8EF] w-full" type="text" required name="name"/>
-            <p className="invisible peer-invalid:peer-focus:visible">error</p>
+            <input value={taskToEdit.name} onChange={handleChange} autoComplete="off" className="peer py-2 px-4 block text-black font-normal focus-visible:invalid:outline-red-500 focus-visible:outline-[#3662E3] text-base border-2 rounded-lg border-[#E3E8EF] w-full" type="text" required name="name"/>
+            <p className="invisible mb-2 mt-1 flex items-center gap-1 peer-invalid:peer-focus:visible">
+            <AlertCircle size={15}/>Invalid task name
+            </p>
           </label>
-          <label className="has-[:focus:invalid]:text-red-400 tracking-wide text-xs text-[#97A3B6] font-medium">
+          <label className="has-[:focus:invalid]:text-red-400 mb-2 tracking-wide text-xs text-[#97A3B6] font-medium">
             Description
             <textarea value={taskToEdit.description} onChange={handleChange} cols={60} rows={6} placeholder="Enter a short description" className="peer w-full resize-none py-2 px-4 block text-black font-normal focus-visible:outline-[#3662E3] text-base border-2 rounded-lg border-[#E3E8EF]" name="description"></textarea>
-            <p className="invisible peer-invalid:peer-focus:visible">error</p>
           </label>
           <Icons currentIcon={taskToEdit.icon} handleChange={handleChange}/>
           <Status handleChange={handleChange} currentStatus={taskToEdit.status}/>

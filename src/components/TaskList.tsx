@@ -17,6 +17,7 @@ export default function TaskList({ setTaskToEdit, dialogRef, setStylishLi, styli
   
   useEffect(() => {
     let board_id = localStorage.getItem("board_id")
+
     if (board_id) {
       getTasks(board_id)
         .then(res => setTasks(res ?? []))
@@ -28,8 +29,7 @@ export default function TaskList({ setTaskToEdit, dialogRef, setStylishLi, styli
         .then(res => setTasks(res ?? []))
         .catch(err => console.error(err))
     }
-    console.log(board_id);
-    
+
     setBoardId(board_id)
   }, [])
 
@@ -49,10 +49,15 @@ export default function TaskList({ setTaskToEdit, dialogRef, setStylishLi, styli
     dialogRef.current?.showModal()
   }
 
+  const handleTaskClick = (task: Task, i: number) => {
+    handleOpenDialog(task)
+    setStylishLi(i)
+  }
+
   return (
     <ul>
       <Suspense fallback={new Array(4).fill(0).map((_, i) => <li key={i} className="h-20 my-5 rounded-xl bg-gray-200"></li>)}>
-        <Tasks tasks={tasks} handleOpenDialog={handleOpenDialog} stylishLi={stylishLi} setStylishLi={setStylishLi}/>
+        <Tasks tasks={tasks} stylishLi={stylishLi} handleTaskClick={handleTaskClick}/>
       </Suspense>
       <li onClick={handleAddTask} className="h-20 my-5 cursor-pointer hover:contrast-[.9] transition-all flex items-center justify-between p-4 rounded-2xl bg-[#F5E8D5] active:outline outline-2 outline-[#3662E3] outline-offset-[3px]">
         <div className="flex justify-center items-center gap-5"> 

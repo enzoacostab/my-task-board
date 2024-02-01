@@ -47,6 +47,10 @@ div.Completed {
   scale: .8;
 }
 
+.close-button:hover {
+  background-color: #f3f3f3;
+}
+
 .icon {
   background-color: #E3E8EF;
 }
