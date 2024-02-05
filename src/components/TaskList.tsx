@@ -1,8 +1,8 @@
-import { Dispatch, RefObject, SetStateAction, Suspense, lazy, useEffect, useState } from 'react'
+import { Dispatch, RefObject, SetStateAction, useEffect, useState } from 'react'
 import { Task } from '../../types'
 import { getTasks, addTask } from "../services/board"
 import { v4 as uuid } from "uuid"
-const Tasks = lazy(() => import ('./Tasks'))
+import Tasks from './Tasks'
 
 interface Props { 
   setTaskToEdit: Dispatch<SetStateAction<Task>>, 
@@ -56,9 +56,7 @@ export default function TaskList({ setTaskToEdit, dialogRef, setStylishLi, styli
 
   return (
     <ul>
-      <Suspense fallback={new Array(4).fill(0).map((_, i) => <li key={i} className="h-20 my-5 rounded-xl bg-gray-200"></li>)}>
-        <Tasks tasks={tasks} stylishLi={stylishLi} handleTaskClick={handleTaskClick}/>
-      </Suspense>
+      <Tasks tasks={tasks} stylishLi={stylishLi} handleTaskClick={handleTaskClick}/>
       <li onClick={handleAddTask} className="h-20 my-5 cursor-pointer hover:contrast-[.9] transition-all flex items-center justify-between p-4 rounded-2xl bg-[#F5E8D5] active:outline outline-2 outline-[#3662E3] outline-offset-[3px]">
         <div className="flex justify-center items-center gap-5"> 
           <div className="bg-[#E9A23B] p-3 rounded-xl">

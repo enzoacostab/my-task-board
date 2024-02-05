@@ -1,5 +1,7 @@
+import { Suspense, lazy } from "react"
 import { Task } from "../../types"
-import TaskComponent from "./TaskComponent"
+import TaskSkeleton from "./TaskSkeleton"
+const TaskComponent = lazy(() => import ("./TaskComponent"))
 
 interface Props {
   stylishLi: number,
@@ -10,7 +12,11 @@ interface Props {
 export default function Tasks({ tasks, handleTaskClick, stylishLi } : Props) {
   return (
     <>
-      {tasks.map((task: Task, i) => <TaskComponent key={task._id} stylishLi={stylishLi} handleTaskClick={handleTaskClick} i={i} task={task}/>)}
+      {tasks.map((task: Task, i) => 
+        <Suspense key={task._id} fallback={<TaskSkeleton/>}>
+          <TaskComponent stylishLi={stylishLi} handleTaskClick={handleTaskClick} i={i} task={task}/>
+        </Suspense>
+      )}
     </>
   )
 }
